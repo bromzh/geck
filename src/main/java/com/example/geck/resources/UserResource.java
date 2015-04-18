@@ -1,6 +1,6 @@
 package com.example.geck.resources;
 
-import com.example.geck.dao.UserDao;
+import com.example.geck.beans.UserBean;
 import com.example.geck.entities.User;
 
 import javax.ejb.EJB;
@@ -13,36 +13,36 @@ import java.util.List;
 public class UserResource {
 
     @EJB
-    UserDao dao;
+    UserBean bean;
 
     @GET
     public List<User> getAll() {
-        return dao.findAll();
+        return bean.findAll();
     }
 
     @POST
     public User create(User item) {
-        dao.create(item);
+        bean.create(item);
         return item;
     }
 
     @Path("{id}")
     @GET
     public User getOne(@PathParam("id") Integer id) {
-        return dao.find(id);
+        return bean.find(id);
     }
 
     @Path("{id}")
     @PUT
     public User update(@PathParam("id") Integer id, User item) {
         item.setId(id);
-        dao.edit(item);
+        bean.edit(item);
         return item;
     }
 
     @Path("{id}")
     @DELETE
     public void delete(@PathParam("id") Integer id) {
-        dao.remove(dao.find(id));
+        bean.remove(bean.find(id));
     }
 }

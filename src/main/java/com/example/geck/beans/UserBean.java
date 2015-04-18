@@ -1,19 +1,19 @@
-package com.example.geck.dao;
+package com.example.geck.beans;
 
-import com.example.geck.entities.Post;
+import com.example.geck.entities.User;
 
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
 @Stateless
-public class PostDao extends AbstractDao<Post> {
+public class UserBean extends AbstractBean<User> {
 
     @PersistenceContext(unitName = "GeckPU")
     EntityManager em;
 
-    public PostDao() {
-        super(Post.class);
+    public UserBean() {
+        super(User.class);
     }
 
     @Override

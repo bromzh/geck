@@ -1,14 +1,14 @@
-package com.example.geck.dao;
+package com.example.geck.beans;
 
 import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
 import javax.persistence.criteria.*;
 import java.util.List;
 
-public abstract class AbstractDao<T> {
+public abstract class AbstractBean<T> {
     private Class<T> entityClass;
 
-    public AbstractDao(Class<T> entityClass) {
+    public AbstractBean(Class<T> entityClass) {
         this.entityClass = entityClass;
     }
 

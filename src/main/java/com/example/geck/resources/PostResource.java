@@ -1,6 +1,6 @@
 package com.example.geck.resources;
 
-import com.example.geck.dao.PostDao;
+import com.example.geck.beans.PostBean;
 import com.example.geck.entities.Post;
 
 import javax.ejb.EJB;
@@ -13,36 +13,36 @@ import java.util.List;
 public class PostResource {
 
     @EJB
-    PostDao dao;
+    PostBean bean;
 
     @GET
     public List<Post> getAll() {
-        return dao.findAllWithLazy("owner");
+        return bean.findAllWithLazy("owner");
     }
 
     @POST
     public Post create(Post item) {
-        dao.create(item);
-        return dao.findWithLazy(item.getId(), "owner");
+        bean.create(item);
+        return bean.findWithLazy(item.getId(), "owner");
     }
 
     @Path("{id}")
     @GET
     public Post getOne(@PathParam("id") Integer id) {
-        return dao.findWithLazy(id, "owner");
+        return bean.findWithLazy(id, "owner");
     }
 
     @Path("{id}")
     @PUT
     public Post update(@PathParam("id") Integer id, Post item) {
         item.setId(id);
-        dao.edit(item);
+        bean.edit(item);
         return item;
     }
 
     @Path("{id}")
     @DELETE
     public void delete(@PathParam("id") Integer id) {
-        dao.remove(dao.find(id));
+        bean.remove(bean.find(id));
     }
 }
